@@ -99,7 +99,7 @@ export function MeusDados() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
+    <Container maxWidth="lg">
       <Box mb={4}>
         <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
           Meus Dados
