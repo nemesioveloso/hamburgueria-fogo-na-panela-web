@@ -5,11 +5,12 @@ import { AuthProvider } from "../auth/AuthProvider";
 import ProtectedRoute from "../auth/ProtectedRoute";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
-import AuthLayout from "../layouts/AuthLayout";
-import DashboardLayout from "../layouts/DashboardLayout";
+import AuthLayout from "../layouts/PublicLayout";
+import DashboardLayout from "../layouts/AutenticatedLayout";
 import { Home } from "../pages/Home";
 import { ComprasAnteriores } from "../pages/ComprasAnteriores";
 import { MeusDados } from "../pages/MeusDados";
+import { Cardapio } from "../pages/Cardapio";
 
 export default function AppRoutes() {
   return (
@@ -21,6 +22,7 @@ export default function AppRoutes() {
             <Route path="/" element={<Home />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/cardapio" element={<Cardapio />} />
           </Route>
 
           {/* 🔐 Layout Privado */}

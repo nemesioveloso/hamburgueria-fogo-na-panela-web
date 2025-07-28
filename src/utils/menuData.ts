@@ -13,6 +13,11 @@ export const menuData: Menu[] = [
     accessLevel: ["admin", "manager", "user"],
   },
   {
+    name: "Cardapio",
+    icon: "search",
+    path: "/cardapio"
+  },
+  {
     name: "Compras Anteriores",
     icon: "search",
     path: "/comprasAnteriores",

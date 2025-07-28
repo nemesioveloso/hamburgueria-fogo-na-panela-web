@@ -20,6 +20,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import * as Icons from "@mui/icons-material";
 import { menuData } from "../utils/menuData";
 import { useAuth } from "../auth/AuthProvider";
+import { pt } from "../utils/static";
 
 export type Role = "admin" | "manager" | "user";
 
@@ -183,6 +184,7 @@ export default function DashboardLayout() {
         sx={{
           width: { md: `calc(100% - ${drawerWidth}px)` },
           ml: { md: `${drawerWidth}px` },
+          bgcolor: pt.primary
         }}
       >
         <Toolbar>
@@ -195,8 +197,8 @@ export default function DashboardLayout() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Dashboard
+          <Typography variant="h6" color={pt.secondary}>
+            {pt.name}
           </Typography>
         </Toolbar>
       </AppBar>
