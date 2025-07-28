@@ -73,7 +73,7 @@ export function PublicLayout() {
           <Grid container spacing={4}>
             <Grid size={{ xs: 12, md: 4 }}>
               <Typography variant="h6" gutterBottom fontWeight="bold">
-                Burger House
+                {pt.name}
               </Typography>
               <Typography variant="body2" sx={{ mb: 2 }}>
                 Os melhores hambúrgueres da cidade, feitos com ingredientes
