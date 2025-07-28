@@ -12,8 +12,6 @@ import {
   CardHeader,
   Chip,
   IconButton,
-  Alert,
-  Snackbar,
 } from "@mui/material";
 import {
   Person,
@@ -26,6 +24,7 @@ import {
   Security,
   PhotoCamera,
 } from "@mui/icons-material";
+import { toast } from "react-toastify";
 
 interface UserData {
   nome: string;
@@ -70,26 +69,31 @@ const dadosIniciais: UserData = {
 export function MeusDados() {
   const [dados, setDados] = useState<UserData>(dadosIniciais);
   const [editando, setEditando] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
-    if (field.includes(".")) {
-      const [parent, child] = field.split(".");
-      setDados((prev) => ({
-        ...prev,
-        [parent]: {
-          ...prev[parent as keyof UserData],
-          [child]: value,
-        },
-      }));
-    } else {
-      setDados((prev) => ({ ...prev, [field]: value }));
-    }
+    setDados((prev) => {
+      if (field.includes(".")) {
+        const [parent, child] = field.split(".");
+        const parentValue = prev[parent as keyof typeof prev];
+
+        if (typeof parentValue === "object" && parentValue !== null) {
+          return {
+            ...prev,
+            [parent]: {
+              ...parentValue,
+              [child]: value,
+            },
+          };
+        }
+        return prev;
+      }
+      return { ...prev, [field]: value };
+    });
   };
 
   const handleSave = () => {
     setEditando(false);
-    setShowSuccess(true);
+    toast.success("Dados salvos com sucesso!");
     // Aqui você faria a chamada para a API para salvar os dados
   };
 
@@ -225,7 +229,7 @@ export function MeusDados() {
                       handleInputChange("dataNascimento", e.target.value)
                     }
                     disabled={!editando}
-                    InputLabelProps={{ shrink: true }}
+                    slotProps={{ inputLabel: { shrink: true } }}
                   />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
@@ -252,10 +256,12 @@ export function MeusDados() {
                       handleInputChange("telefone", e.target.value)
                     }
                     disabled={!editando}
-                    InputProps={{
-                      startAdornment: (
-                        <Phone sx={{ mr: 1, color: "action.active" }} />
-                      ),
+                    slotProps={{
+                      input: {
+                        startAdornment: (
+                          <Phone sx={{ mr: 1, color: "action.active" }} />
+                        ),
+                      },
                     }}
                   />
                 </Grid>
@@ -264,7 +270,7 @@ export function MeusDados() {
           </Card>
 
           {/* Endereço */}
-          <Card sx={{ mt: 3 }}>
+          <Card sx={{ mt: 3, mb: 3 }}>
             <CardHeader
               title="Endereço de Entrega"
               avatar={
@@ -346,17 +352,6 @@ export function MeusDados() {
           </Card>
         </Grid>
       </Grid>
-
-      <Snackbar
-        open={showSuccess}
-        autoHideDuration={3000}
-        onClose={() => setShowSuccess(false)}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert severity="success" onClose={() => setShowSuccess(false)}>
-          Dados salvos com sucesso!
-        </Alert>
-      </Snackbar>
     </Container>
   );
 }

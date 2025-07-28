@@ -31,7 +31,7 @@ export interface User {
   role: Role;
 }
 
-export default function DashboardLayout() {
+export function AutenticatedLayout() {
   const drawerWidth = 280;
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -184,7 +184,7 @@ export default function DashboardLayout() {
         sx={{
           width: { md: `calc(100% - ${drawerWidth}px)` },
           ml: { md: `${drawerWidth}px` },
-          bgcolor: pt.primary
+          bgcolor: pt.primary,
         }}
       >
         <Toolbar>

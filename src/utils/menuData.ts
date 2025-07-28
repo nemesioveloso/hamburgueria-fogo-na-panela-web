@@ -7,15 +7,9 @@ export const menuData: Menu[] = [
     path: "/dashboard",
   },
   {
-    name: "Tabela",
-    icon: "table",
-    path: "/tabela",
-    accessLevel: ["admin", "manager", "user"],
-  },
-  {
     name: "Cardapio",
     icon: "search",
-    path: "/cardapio"
+    path: "/cardapio",
   },
   {
     name: "Compras Anteriores",

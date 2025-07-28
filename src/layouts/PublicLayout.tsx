@@ -1,10 +1,27 @@
-import { Box, Container, Typography, Button, Grid, Link, Divider, IconButton } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Grid,
+  Link,
+  Divider,
+  IconButton,
+  Avatar,
+} from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { appConfig } from "../config/appConfig";
-import { Email, Facebook, Instagram, LocationOn, Phone, WhatsApp } from "@mui/icons-material";
+import {
+  Email,
+  Facebook,
+  Instagram,
+  LocationOn,
+  Phone,
+  WhatsApp,
+} from "@mui/icons-material";
 import { pt } from "../utils/static";
 
-export default function AuthLayout() {
+export function PublicLayout() {
   return (
     <Box
       sx={{
@@ -19,6 +36,7 @@ export default function AuthLayout() {
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
           padding: "0px 1rem",
           bgcolor: pt.primary,
           color: "#fff",
@@ -30,19 +48,27 @@ export default function AuthLayout() {
             {pt.name}
           </Typography>
         </Link>
-        <Button variant="contained" color="primary" href="/dashboard">
+        <Button
+          variant="text"
+          size="small"
+          startIcon={<Avatar />}
+          color="warning"
+          href="/dashboard"
+        >
           Entrar
         </Button>
       </Box>
 
       {/* Conteúdo */}
-      <Box sx={{ flex: 1, padding: { xs: 0, sm: 1, md: 2, lg: 4 } }}>
+      <Box sx={{ flex: 1 }}>
         <Outlet />
       </Box>
 
       {/* Footer */}
-      < Box component="footer" sx={{ bgcolor: pt.primary, color: pt.secondary, py: 6 }
-      }>
+      <Box
+        component="footer"
+        sx={{ bgcolor: pt.primary, color: pt.secondary, py: 6 }}
+      >
         <Container maxWidth="lg">
           <Grid container spacing={4}>
             <Grid size={{ xs: 12, md: 4 }}>
@@ -50,7 +76,8 @@ export default function AuthLayout() {
                 Burger House
               </Typography>
               <Typography variant="body2" sx={{ mb: 2 }}>
-                Os melhores hambúrgueres da cidade, feitos com ingredientes frescos e muito amor.
+                Os melhores hambúrgueres da cidade, feitos com ingredientes
+                frescos e muito amor.
               </Typography>
               <Box display="flex" gap={1}>
                 <IconButton color="primary" size="small">
@@ -79,7 +106,9 @@ export default function AuthLayout() {
               </Box>
               <Box display="flex" alignItems="center">
                 <LocationOn fontSize="small" sx={{ mr: 1 }} />
-                <Typography variant="body2">Rua das Flores, 123 - Centro</Typography>
+                <Typography variant="body2">
+                  Rua das Flores, 123 - Centro
+                </Typography>
               </Box>
             </Grid>
 
@@ -110,12 +139,10 @@ export default function AuthLayout() {
           <Divider sx={{ my: 4, bgcolor: pt.secondary }} />
 
           <Box textAlign="center">
-            <Typography variant="body2">
-              {appConfig.copyright}
-            </Typography>
+            <Typography variant="body2">{appConfig.copyright}</Typography>
           </Box>
         </Container>
-      </Box >
+      </Box>
     </Box>
   );
 }

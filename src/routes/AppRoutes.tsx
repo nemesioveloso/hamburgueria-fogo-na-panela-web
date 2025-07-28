@@ -5,8 +5,8 @@ import { AuthProvider } from "../auth/AuthProvider";
 import ProtectedRoute from "../auth/ProtectedRoute";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
-import AuthLayout from "../layouts/PublicLayout";
-import DashboardLayout from "../layouts/AutenticatedLayout";
+import { PublicLayout } from "../layouts/PublicLayout";
+import { AutenticatedLayout } from "../layouts/AutenticatedLayout";
 import { Home } from "../pages/Home";
 import { ComprasAnteriores } from "../pages/ComprasAnteriores";
 import { MeusDados } from "../pages/MeusDados";
@@ -18,7 +18,7 @@ export default function AppRoutes() {
       <AuthProvider>
         <Routes>
           {/* 🔓 Layout Público */}
-          <Route element={<AuthLayout />}>
+          <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/login" element={<Login />} />
@@ -29,7 +29,7 @@ export default function AppRoutes() {
           <Route
             element={
               <ProtectedRoute requiredRole="admin">
-                <DashboardLayout />
+                <AutenticatedLayout />
               </ProtectedRoute>
             }
           >
